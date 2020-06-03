@@ -1,6 +1,6 @@
+from src import app, db
+from src.models import Topic, User
 from flask import Flask
-
-app = Flask(__name__)
 
 
 @app.route('/')
