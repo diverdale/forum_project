@@ -1,11 +1,12 @@
-from src import app, db
-from src.models import Topic, User
-from flask import Flask
+from src import app
+from flask import render_template
+from flask_login import current_user
 
 
 @app.route('/')
-def hello_world():
-    return 'Hello World!'
+def index():
+    print(f'current user: {current_user.user_username}')
+    return render_template('index.html')
 
 
 if __name__ == '__main__':
