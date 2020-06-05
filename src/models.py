@@ -19,7 +19,7 @@ class User(db.Model, UserMixin):
     user_first_name = db.Column(db.String(64))
     user_date = db.Column(db.DateTime)
     password_hash = db.Column(db.String(128))
-    user_reply = db.relationship('Reply', cascade="all, delete-orphan", backref='author', lazy='dynamic')
+    user_reply = db.relationship('Reply', cascade="all, delete-orphan", backref='reply_from', lazy='dynamic')
 
     def __init__(self, user_email, user_username, user_password, user_role, user_date):
 
@@ -59,7 +59,7 @@ class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     category_name = db.Column(db.String(100))
     category_description = db.Column(db.String(100))
-    category_topic = db.relationship('Topic', cascade="all, delete-orphan", backref='author', lazy='dynamic')
+    category_topic = db.relationship('Topic', cascade="all, delete-orphan", backref='top_author', lazy='dynamic')
 
     def __init__(self, category_name, category_description):
         self.category_name = category_name
