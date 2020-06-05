@@ -9,9 +9,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/7e51c8576e.js" crossorigin="anonymous"></script>
 </head>
-    <body>
+    <body class="d-flex flex-column min-vh-100">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Conclave</a>
+  <a class="navbar-brand" href="{{ url_for('index') }}">Conclave</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -19,11 +19,11 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="{{ url_for('index') }}"><i class="fas fa-users"></i>Main Forum <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{{ url_for('forum.index') }}"><i class="fas fa-users"></i>Main Forum <span class="sr-only">(current)</span></a>
       </li>
       {% if current_user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-user-shield"></i> My Profile</a>
+            <a class="nav-link" href="{{ url_for('users.profile') }}"><i class="fas fa-user-shield"></i> My Profile</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('forum.add') }}"><i class="far fa-plus-square"></i> New Topic</a>
@@ -61,6 +61,7 @@
 </nav>
             {% block content %}
             {% endblock %}
+    <footer class="footer flex-align-end text-center text-light bg-dark" style="padding-top: 20px; padding-bottom: 20px; margin-top: auto;">footer</footer>
     </body>
 </html>
 

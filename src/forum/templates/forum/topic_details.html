@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="card" style="margin-top: 25px;">
+            <div class="card-header">
+                <h4>{{ topic.topic_title }}</h4>
+            </div>
+            <div class="card-body">
+                <p class="text-muted">{{ topic.topic_content|markdown }}</p>
+            </div>
+            <div class="card-footer">
+                <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item list-group-item-dark">
+                        <a href="{{ url_for('forum.reply', topic_id=topic.id) }}" class="btn" style="text-decoration: none; font-size: small;"><i class="fas fa-reply"></i> Reply</a>
+                    </li>
+                    <li class="list-group-item list-group-item-dark">
+                        <a href="#" class="btn" style="text-decoration: none; font-size: small;"> <i class="far fa-comment-dots"></i> Quote</a>
+                    </li>
+                    {% if current_user.id == topic.topic_author %}
+                        <li class="list-group-item list-group-item-dark">
+                            <a href="#" class="btn" style="text-decoration: none; font-size: small;"><i class="fas fa-edit"></i>Edit</a>
+                        </li>
+                        <li class="list-group-item list-group-item-dark">
+                            <a href="#" class="btn" style="text-decoration: none; font-size: small;"><i class="far fa-trash-alt"></i> Delete</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+        <br>
+        {% for reply in replies %}
+            <div class="card">
+                <div class="card-body">
+                     <p class="text-muted">{{ reply.reply_content|markdown }}</p>
+                </div>
+            <div class="card-footer">
+                <ul class="list-group list-group-horizontal">
+                    {% if current_user.id == reply.reply_author %}
+                        <li class="list-group-item list-group-item-dark">
+                            <a href="#" class="btn" style="text-decoration: none; font-size: small;"><i class="fas fa-edit"></i>Edit</a>
+                        </li>
+                        <li class="list-group-item list-group-item-dark">
+                            <a href="#" class="btn" style="text-decoration: none; font-size: small;"><i class="far fa-trash-alt"></i> Delete</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+            </div>
+            <br>
+        {% endfor %}
+    </div>
+{% endblock %}

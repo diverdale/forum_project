@@ -51,7 +51,7 @@ class Topic(db.Model):
         self.topic_category = topic_category
 
     def __repr__(self):
-        return self._title
+        return self.topic_title
 
 
 class Category(db.Model):

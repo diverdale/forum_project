@@ -4,11 +4,13 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
 from flask_bootstrap import Bootstrap
+from flask_misaka import Misaka
 
 login_manager = LoginManager()
 
 app = Flask(__name__, template_folder='../templates', static_url_path='', static_folder='../static')
 
+Misaka(app)
 Bootstrap(app)
 
 

@@ -6,9 +6,30 @@
             <div class="card-header">
                 <h3>Main Forum</h3>
             </div>
-            <div class="card-body">
-                <p>This will be the main forum list</p>
-            </div>
+            {% for category in categories %}
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="card-body">
+                            <div class="card" style="padding: 0;">
+                                <div class="card-body">
+                                    <h5 class="card-title" style="font-size: medium;">
+                                        {{ category }}
+                                    </h5>
+                                    <ul class="list-group">
+                                        {% for topic in topics %}
+                                            {% if topic.topic_category == category.id %}
+                                                <li class="list-group-item list-group-item-action">
+                                                    <a href="{{ url_for('forum.view', topic_id=topic.id) }}" class="stretched-link" style="text-decoration: none; font-size: medium;">{{ topic.topic_title }}</a>
+                                                </li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

@@ -56,6 +56,13 @@ def register():
     return render_template('register.html', form=form)
 
 
+@users_blueprint.route('/profile')
+@login_required
+def profile():
+    user = User.query.filter_by(id=current_user.id).first()
+    return render_template('profile.html', user=user)
+
+
 @users_blueprint.route('/list')
 @login_required
 def list():
